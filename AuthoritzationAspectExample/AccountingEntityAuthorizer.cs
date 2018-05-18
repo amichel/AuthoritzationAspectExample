@@ -1,11 +1,16 @@
 ﻿namespace AuthoritzationAspectExample
 {
-    class AccountingEntityAuthorizer : IEntityCommandAuthorizer<BaseAccountingRecordCommand, long>
+    class AccountingEntityAuthorizer : IEntityCommandAuthorizer<BaseAccountingRecordCommand>
     {
         public bool Authorize(BaseAccountingRecordCommand command)
         {
             //TODO: return AuthorizationProvider.Accounting.BelongsTo(command.EntityValidationKey,command.AccountNumber);
-            return command.EntityValidationKey % 2 == 0; //something for mock
+            return command.RecordId % 2 == 0; //something for mock
+        }
+
+        public bool Authorize(object entity)
+        {
+            return Authorize(entity as BaseAccountingRecordCommand);
         }
     }
 }

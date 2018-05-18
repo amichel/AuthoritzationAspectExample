@@ -1,8 +1,7 @@
 ﻿namespace AuthoritzationAspectExample
 {
-    public interface IAuthoriziedAccountRequest
+    public interface IAuthoriziedAccountRequest: IHasAccountNumber
     {
         string UserName { get; }
-        int AccountNumber { get; }
     }
 }

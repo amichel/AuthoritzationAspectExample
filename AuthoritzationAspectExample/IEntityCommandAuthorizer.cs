@@ -1,6 +1,12 @@
 ﻿namespace AuthoritzationAspectExample
 {
-    public interface IEntityCommandAuthorizer<TCommand, K> where TCommand : IAuthoriziedEntityCommand<K>
+    public interface IAuthorizer
+    {
+        bool Authorize(object entity);
+    }
+
+    public interface IEntityCommandAuthorizer<in TCommand> : IAuthorizer
+        where TCommand : IAuthoriziedEntityCommand
     {
         bool Authorize(TCommand command);
     }

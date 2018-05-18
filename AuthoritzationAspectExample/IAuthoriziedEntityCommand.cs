@@ -1,7 +1,6 @@
 ﻿namespace AuthoritzationAspectExample
 {
-    public interface IAuthoriziedEntityCommand<T> : IAuthoriziedAccountRequest
+    public interface IAuthoriziedEntityCommand : IAuthoriziedAccountRequest
     {
-        T EntityValidationKey { get; }
     }
 }

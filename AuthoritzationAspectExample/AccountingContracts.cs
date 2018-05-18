@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AuthoritzationAspectExample
 {
-    public class AccountRecord
+    public class AccountRecord : IHasAccountNumber
     {
         public int AccountNumber { get; set; }
         public int Balance { get; set; }
@@ -19,10 +19,9 @@ namespace AuthoritzationAspectExample
         public string UserName { get; set; }
     }
 
-    public abstract class BaseAccountingRecordCommand : BaseAccountingRequest, IAuthoriziedEntityCommand<long>
+    public abstract class BaseAccountingRecordCommand : BaseAccountingRequest, IAuthoriziedEntityCommand
     {
         public long RecordId { get; }
-        public long EntityValidationKey => RecordId;
     }
 
     public class AccountStatementRequest : BaseAccountingRequest

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AuthoritzationAspectExample
 {
-    class AccountAuthorizer : IAccountRequestAuthorizer
+    [Serializable]
+    public class AccountAuthorizer : IAccountRequestAuthorizer
     {
         public bool Authorize(IAuthoriziedAccountRequest request)
         {
