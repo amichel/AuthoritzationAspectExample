@@ -1,4 +1,6 @@
-﻿namespace AuthoritzationAspectExample
+﻿using AuthorizationAspect.Api;
+
+namespace AuthorizationAspectExample
 {
     class AccountingEntityAuthorizer : IEntityCommandAuthorizer<BaseAccountingRecordCommand>
     {

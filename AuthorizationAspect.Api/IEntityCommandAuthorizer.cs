@@ -1,4 +1,4 @@
-﻿namespace AuthoritzationAspectExample
+﻿namespace AuthorizationAspect.Api
 {
     public interface IAuthorizer
     {

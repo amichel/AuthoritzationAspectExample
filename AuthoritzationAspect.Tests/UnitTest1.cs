@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace AuthoritzationAspect.Tests
+namespace AuthorizationAspect.Tests
 {
     public class UnitTest1
     {

@@ -59,14 +59,7 @@
     <Compile Include="AccountingContracts.cs" />
     <Compile Include="AccountingEntityAuthorizer.cs" />
     <Compile Include="AccountingService.cs" />
-    <Compile Include="AuthorizationAspect.cs" />
     <Compile Include="IAccountingService.cs" />
-    <Compile Include="IHasAccountNumber.cs" />
-    <Compile Include="IAccountRequestAuthorizer.cs" />
-    <Compile Include="IAuthoriziedAccountRequest.cs" />
-    <Compile Include="IAuthoriziedEntityCommand.cs" />
-    <Compile Include="IEntityCommandAuthorizer.cs" />
-    <Compile Include="IocContainer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,7 +67,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AuthorizationAspect.Api\AuthorizationAspect.Api.csproj">
+      <Project>{3CD2806D-BA55-4006-A805-4CE467144725}</Project>
+      <Name>AuthorizationAspect.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

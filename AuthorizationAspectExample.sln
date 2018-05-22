@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthoritzationAspectExample", "AuthoritzationAspectExample\AuthoritzationAspectExample.csproj", "{40A75593-5344-486E-9AD0-9A82042EDCF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationAspectExample", "AuthoritzationAspectExample\AuthorizationAspectExample.csproj", "{40A75593-5344-486E-9AD0-9A82042EDCF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthoritzationAspect.Tests", "AuthoritzationAspect.Tests\AuthoritzationAspect.Tests.csproj", "{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationAspect.Tests", "AuthoritzationAspect.Tests\AuthorizationAspect.Tests.csproj", "{2E3DF5C2-8A38-4A03-86D7-8D463C917E47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationAspect.Api", "AuthorizationAspect.Api\AuthorizationAspect.Api.csproj", "{3CD2806D-BA55-4006-A805-4CE467144725}"
 EndProject

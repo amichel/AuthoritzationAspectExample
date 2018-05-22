@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
 
-namespace AuthoritzationAspectExample
+namespace AuthorizationAspect.Api
 {
     public static class IocContainer
     {
@@ -46,27 +43,27 @@ namespace AuthoritzationAspectExample
             Type currentType = type;
             do
             {
-                authorizerType =Type.GetType($"IEntityCommandAuthorizer<{type.Name}>");
+                authorizerType = Type.GetType($"IEntityCommandAuthorizer<{type.Name}>");
             } while (authorizerType == null && currentType.IsNestedPublic);
-            
+
             return authorizerType == null ? null : Container.Value.Resolve(authorizerType) as IAuthorizer;
         }
-        
+
         private static Assembly[] GetAllAssemblies()
         {
-            return new[] { Assembly.GetExecutingAssembly() };
-            //var files = GetFiles();
-            //return files.Select(Assembly.LoadFile).ToArray();
+            //return new[] { Assembly.GetExecutingAssembly(), Assembly.GetCallingAssembly() };
+            var files = GetFiles();
+            return files.Select(Assembly.ReflectionOnlyLoadFrom).ToArray();
         }
 
         private static string[] GetFiles()
         {
             var path = AppDomain.CurrentDomain.BaseDirectory;
 
-            var files = Directory.GetFiles(path, "*.dll"); //TODO: support assembly scan filter via config
+            var files = Directory.GetFiles(path, "AuthorizationAspect*.dll"); //TODO: support assembly scan filter via config
             if (files.Length == 0 && Directory.Exists(path + "bin"))
             {
-                files = Directory.GetFiles(path + "bin", "*.dll");
+                files = Directory.GetFiles(path + "bin", "AuthorizationAspect*.dll");
             }
 
             return files;

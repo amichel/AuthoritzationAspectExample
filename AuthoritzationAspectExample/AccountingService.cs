@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthoritzationAspectExample
+namespace AuthorizationAspectExample
 {
-    [AuthorizationAspect]
+    [AuthorizationAspect.Api.AuthorizationAspect]
     public class AccountingService : IAccountingService
     {
         public IList<AccountRecord> GetAccountStatement(AccountStatementRequest request)

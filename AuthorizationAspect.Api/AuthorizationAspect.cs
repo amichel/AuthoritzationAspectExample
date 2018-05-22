@@ -1,15 +1,11 @@
-﻿using PostSharp.Aspects;
-using System;
-using System.Collections.Concurrent;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
+using PostSharp.Aspects;
 
-namespace AuthoritzationAspectExample
+namespace AuthorizationAspect.Api
 {
     [Flags]
     public enum AuthorizationMode
@@ -39,11 +35,6 @@ namespace AuthoritzationAspectExample
 
         public override void RuntimeInitialize(System.Reflection.MethodBase method)
         {
-           
-        }
-
-        public override void CompileTimeInitialize(MethodBase method, AspectInfo aspectInfo)
-        {
             if (_mode.HasFlag(AuthorizationMode.AccountRequest) || _mode.HasFlag(AuthorizationMode.AccountEntityCommand))
             {
                 _accountAuthorizer = IocContainer.ResolveAccountRequestAuthorizer();
@@ -71,8 +62,13 @@ namespace AuthoritzationAspectExample
                     _returnValueHasAccountNumberEnumerable = true;
             }
 
-            base.CompileTimeInitialize(method, aspectInfo);
+            base.RuntimeInitialize(method);
         }
+
+        //public override void CompileTimeInitialize(MethodBase method, AspectInfo aspectInfo)
+        //{
+           
+        //}
 
         public override void OnEntry(MethodExecutionArgs args)
         {
