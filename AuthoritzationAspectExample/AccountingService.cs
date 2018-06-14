@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AuthorizationAspectExample
 {
-    [AuthorizationAspect.Api.AuthorizationAspect]
+    [AuthorizationAspect.Api.AuthorizationAspect(TODO)]
     public class AccountingService : IAccountingService
     {
         public IList<AccountRecord> GetAccountStatement(AccountStatementRequest request)

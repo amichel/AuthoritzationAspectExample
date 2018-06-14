@@ -37,7 +37,7 @@ namespace AuthorizationAspect.Api
         {
             if (_mode.HasFlag(AuthorizationMode.AccountRequest) || _mode.HasFlag(AuthorizationMode.AccountEntityCommand))
             {
-                _accountAuthorizer = IocContainer.ResolveAccountRequestAuthorizer();
+                _accountAuthorizer = IocContainer.AccountRequestAuthorizer;
 
                 var methodParams = method.GetParameters();
                 for (int i = 0; i < methodParams.Length; i++)
@@ -46,11 +46,9 @@ namespace AuthorizationAspect.Api
                     if (param.ParameterType.IsAssignableTo<IAuthoriziedAccountRequest>())
                         _authoriziedAccountRequestParams.Add(i);
 
-                    if (param.ParameterType.IsAssignableTo<IAuthoriziedEntityCommand>())
-                    {
-                        var authorizer = IocContainer.ResolveEntityCommandAuthorizer(param.ParameterType);
-                        if (authorizer != null) _authorizersCache.Add(i, authorizer);
-                    }
+                    if (param.ParameterType.IsAssignableTo<IAuthoriziedEntityCommand>() &&
+                         IocContainer.EntityCommandAuthorizers.TryGetValue(param.ParameterType, out IAuthorizer authorizer))
+                        _authorizersCache.Add(i, authorizer);
                 }
             }
 
@@ -67,7 +65,7 @@ namespace AuthorizationAspect.Api
 
         //public override void CompileTimeInitialize(MethodBase method, AspectInfo aspectInfo)
         //{
-           
+
         //}
 
         public override void OnEntry(MethodExecutionArgs args)
@@ -89,8 +87,14 @@ namespace AuthorizationAspect.Api
                 }
         }
 
-        public override void OnSuccess(MethodExecutionArgs args)
+        public override void OnExit(MethodExecutionArgs args)
         {
+            if (args.Exception != null)
+            {
+                base.OnExit(args);
+                return;
+            }
+
             void AuthorizeReturnValueAccount(IHasAccountNumber returnValue)
             {
                 if (returnValue.AccountNumber != _authorizedAccount)
@@ -107,7 +111,7 @@ namespace AuthorizationAspect.Api
                         AuthorizeReturnValueAccount(returnValue);
             }
 
-            base.OnSuccess(args);
+            base.OnExit(args);
         }
     }
 }

@@ -46,10 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationAspect.cs" />
+    <Compile Include="EntityCommandAuthorizer.cs" />
     <Compile Include="IAccountRequestAuthorizer.cs" />
     <Compile Include="IAuthoriziedAccountRequest.cs" />
     <Compile Include="IAuthoriziedEntityCommand.cs" />
-    <Compile Include="IEntityCommandAuthorizer.cs" />
+    <Compile Include="IAuthorizer.cs" />
     <Compile Include="IHasAccountNumber.cs" />
     <Compile Include="IocContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
