@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationAspect.cs" />
+    <Compile Include="AuthorizationMode.cs" />
     <Compile Include="EntityCommandAuthorizer.cs" />
     <Compile Include="IAccountRequestAuthorizer.cs" />
     <Compile Include="IAuthoriziedAccountRequest.cs" />
